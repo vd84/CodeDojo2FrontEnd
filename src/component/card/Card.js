@@ -7,7 +7,6 @@ import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 const useStyles = makeStyles((theme) => ({
@@ -33,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RecipeReviewCard() {
+const CardItem = ({rssItem}) => {
   const classes = useStyles();
 
   return (
@@ -45,13 +44,12 @@ export default function RecipeReviewCard() {
             <MoreVertIcon />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        title= {rssItem.entryTitle}
+        subheader={rssItem.pubDate}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          This impressive paella is a perfect party dish and a fun meal to cook together with your
-          guests. Add 1 cup of frozen peas along with the mussels, if you like.
+          {rssItem.contentSnippet}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -59,3 +57,4 @@ export default function RecipeReviewCard() {
     </Card>
   );
 }
+export default CardItem;
