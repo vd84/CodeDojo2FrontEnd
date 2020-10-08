@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from "react";
-import readRSS from '../../rssreader';
+import React from "react";
 
-const TEST_URL = "http://www.nasa.gov/rss/dyn/breaking_news.rss"
 
 
 const HomePage = (props) => {
