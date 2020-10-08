@@ -1,23 +1,12 @@
-
 import SubmitPage from './pages/submitpage';
 import HomePage from './pages/homepage';
 import DashboardNavBar from './component/DashboardNavBar'
-import React, { useState, useEffect } from "react";
-import readRSS from "./rssreader";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-let Parser = require("rss-parser");
-let parser = new Parser({});
-
-const TEST_URL = "http://www.nasa.gov/rss/dyn/breaking_news.rss";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import React, { useState } from "react";
 
 function App() {
-  const [rssFeedUrls, setRssFeedUrls] = useState([]);
-  const [rssFeedData, setRssFeedData] = useState([]);
 
-  useEffect(() => {
-    setRssFeedData(readRSS(TEST_URL));
-    console.log(rssFeedData)
-  });
+  const [rssData, setRssData] = useState([]);
 
   return (
     <Router>

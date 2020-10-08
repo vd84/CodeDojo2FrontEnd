@@ -1,6 +1,5 @@
 let Parser = require('rss-parser');
 let parser = new Parser({});
-
 const CORS_PROXY = "https://cors-anywhere.herokuapp.com/"
 let data = [];
 export const readRSS = (url) => {
@@ -10,7 +9,6 @@ export const readRSS = (url) => {
       ) {
         if (err) throw err;
         feed.items.forEach(function (entry) {
-
                 let feedObject = {
                     "feedTitle": feed.title,
                     "entryTitle": entry.title,
@@ -25,5 +23,4 @@ export const readRSS = (url) => {
 
       return data;
 }
-
 export default readRSS;
