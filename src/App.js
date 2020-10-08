@@ -18,29 +18,9 @@ function App() {
   const { add } = useIndexedDB("rssDataStore");
 
   const addIntoDb = (rssList) => {
-
-
-/*     add({
-      feedTitle: rssItem.feedTitle,
-      entryTitle: rssItem.entryTitle,
-      content: rssItem.content,
-      pubDate: rssItem.pubDate,
-      link: rssItem.link,
-      contentSnippet: rssItem.contentSnippet,
-    }).then(
-      (event) => {
-        console.log("ID GENERATED", event.target.result);
-      },
-      (error) => {
-        console.log(error);
-      }
-    ); */
-
-
     rssList.map((rssItem) => {
-      console.log(rssItem);
       add({
-        feedTitle: "1",
+        feedTitle: rssItem.feedTitle,
         entryTitle: rssItem.entryTitle,
         content: rssItem.content,
         pubDate: rssItem.pubDate,
@@ -50,27 +30,9 @@ function App() {
       );
     });
   };
-  let newState = [];
 
   useEffect(() => {
-    let data  = readRSS(TEST_URL)
-
-    console.log(data.keys.name)
-    let arr = []
-    data.forEach(([key, value]) => {
-      arr.push(value); // 1
-    });
-
-    console.log(arr)
-
-    for (let i = 0; i<data.length; i++){
-      console.log(data[i])
-      newState.push(data[i])
-    }
-
-    console.log(newState);
-
-
+    readRSS(TEST_URL).then((rssData) => setRssData(rssData));
   }, []);
 
   useEffect(() => {

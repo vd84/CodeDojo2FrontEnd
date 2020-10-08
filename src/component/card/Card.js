@@ -47,11 +47,7 @@ const CardItem = ({rssItem}) => {
         title= {rssItem.entryTitle}
         subheader={rssItem.pubDate}
       />
-      <CardMedia
-        className={classes.media}
-        image="/static/images/cards/paella.jpg"
-        title="Paella dish"
-      />
+     
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           {rssItem.contentSnippet}

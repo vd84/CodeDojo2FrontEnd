@@ -1,22 +1,20 @@
-let Parser = require("rss-parser");
+let Parser = require('rss-parser');
 let parser = new Parser({});
-const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
-let data = [];
+const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/';
 export const readRSS = (url) => {
-  parser.parseURL(CORS_PROXY + url, function (err, feed) {
-    if (err) throw err;
-    feed.items.forEach((entry) => {
-      let feedObject = {
-        "feedTitle": feed.title,
-        "entryTitle": entry.title,
-        "content": entry.content,
-        "pubDate": entry.pubDate,
-        "link": entry.link,
-        "contentSnippet": entry.contentSnippet,
-      };
-      data.push(feedObject);
+  let data = [];
+  return parser.parseURL(CORS_PROXY + url).then((feed) => {
+    feed.items.map((entry) => {
+      data.push({
+        entryTitle: entry.title,
+        feedTitle: feed.title,
+        content: entry.content,
+        pubDate: entry.pubDate,
+        link: entry.link,
+        contentSnippet: entry.contentSnippet,
+      });
     });
+    return data;
   });
-  return data;
 };
 export default readRSS;
