@@ -141,6 +141,7 @@ function DashboardNavBar(props) {
           </Drawer>
         </Hidden>
       </nav>
+      
     </div>
   );
 }
