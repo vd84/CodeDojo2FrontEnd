@@ -1,7 +1,11 @@
 import React from "react";
 import Card from '../../component/card/Card'
+import { useIndexedDB } from 'react-indexed-db';
+
 
 const HomePage = (props) => {
+
+   // const db = useIndexedDB('rssData');
   return (
     <div className="homepage">
       <ul>
