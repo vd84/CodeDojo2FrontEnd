@@ -4,15 +4,18 @@ import SubmitPage from "./pages/submitpage";
 import HomePage from "./pages/homepage";
 import readRSS from "./rssreader";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-let Parser = require('rss-parser');
-let parser = new Parser({
-});
+let Parser = require("rss-parser");
+let parser = new Parser({});
 
-const TEST_URL = "http://www.nasa.gov/rss/dyn/breaking_news.rss"
+const TEST_URL = "http://www.nasa.gov/rss/dyn/breaking_news.rss";
 
 function App() {
+  const [rssFeedUrls, setRssFeedUrls] = useState([]);
+  const [rssFeedData, setRssFeedData] = useState([]);
+
   useEffect(() => {
-    readRSS(TEST_URL);
+    setRssFeedData(readRSS(TEST_URL));
+    console.log(rssFeedData)
   });
 
   return (
@@ -42,7 +45,7 @@ function App() {
             <SubmitPage />
           </Route>
           <Route path="/">
-            <HomePage />
+            <HomePage rssfeed={rssFeedData} />
           </Route>
         </Switch>
       </div>

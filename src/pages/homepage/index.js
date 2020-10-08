@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import readRSS from '/home/douglashammarstam/CodeDojo2FrontEnd/src/rssreader';
+
+const TEST_URL = "http://www.nasa.gov/rss/dyn/breaking_news.rss"
 
 
-const HomePage = () => {
+const HomePage = (props) => {
+
+    props.rssfeed.map((item) => {
+        console.log(item)
+    })
+
     return(
         <div className="homepage">
-            <h1>Homepage</h1>
+            <ul>
+                {props.rssfeed.map((item) => {
+                    return(<li>{item}</li>)
+                })}
+            </ul>
         </div>
     )
 }
