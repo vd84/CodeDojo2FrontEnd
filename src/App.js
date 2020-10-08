@@ -1,11 +1,9 @@
 
 import SubmitPage from './pages/submitpage';
 import HomePage from './pages/homepage';
-import DashboardNavBar from './component/DashboardNavBar'
+import DashboardNavBar from './component/dashboardNavBar/DashboardNavBar'
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-
-
 
 function App() {
 
