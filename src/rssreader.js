@@ -7,12 +7,12 @@ export const readRSS = (url) => {
     if (err) throw err;
     feed.items.forEach((entry) => {
       let feedObject = {
-        feedTitle: feed.title,
-        entryTitle: entry.title,
-        content: entry.content,
-        pubDate: entry.pubDate,
-        link: entry.link,
-        contentSnippet: entry.contentSnippet,
+        "feedTitle": feed.title,
+        "entryTitle": entry.title,
+        "content": entry.content,
+        "pubDate": entry.pubDate,
+        "link": entry.link,
+        "contentSnippet": entry.contentSnippet,
       };
       data.push(feedObject);
     });
