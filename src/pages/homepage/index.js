@@ -5,7 +5,6 @@ import "./homepage.css";
 
 
 const HomePage = (props) => {
-<<<<<<< HEAD
   const [selectedNames, setSelectedNames] = useState([]); 
 
     const FindFeednames =()=>{
@@ -24,10 +23,8 @@ const HomePage = (props) => {
 
     const filterRssData = (rssdata) =>{
     }
+    
 
-=======
-    console.log(props.rssData)
->>>>>>> master
    // const db = useIndexedDB('rssData');
   return (
       
