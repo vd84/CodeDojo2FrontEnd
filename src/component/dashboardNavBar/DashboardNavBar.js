@@ -107,7 +107,7 @@ function DashboardNavBar(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Responsive drawer
+            Your Personal RSS Feed
           </Typography>
         </Toolbar>
       </AppBar>
