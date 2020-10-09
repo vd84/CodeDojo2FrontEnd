@@ -13,26 +13,37 @@ function App() {
   const TEST_URL = "http://www.nasa.gov/rss/dyn/breaking_news.rss";
   const [rssData, setRssData] = useState([]);
   const { add } = useIndexedDB("rssDataStore");
+  const [subscriptionUrls, setSubScriptionUrls] = useState([]);
 
   const addIntoDb = (rssList) => {
     rssList.map((rssItem) => {
-      add({
-        feedTitle: rssItem.feedTitle,
-        entryTitle: rssItem.entryTitle,
-        content: rssItem.content,
-        pubDate: rssItem.pubDate,
-        link: rssItem.link,
-        contentSnippet: rssItem.contentSnippet,
-      });
+
+      try {
+        add({
+          feedTitle: rssItem.feedTitle,
+          entryTitle: rssItem.entryTitle,
+          content: rssItem.content,
+          pubDate: rssItem.pubDate,
+          link: rssItem.link,
+          contentSnippet: rssItem.contentSnippet,
+        });
+      } catch (e){
+        console.log("SAme objewct")
+      }
+
     });
   };
 
   useEffect(() => {
-    readRSS(TEST_URL).then((rssData) => setRssData(rssData));
+    readRSS(TEST_URL).then((rssData) => setRssData(rssData)).catch(err => console.log(err));
   }, []);
 
   useEffect(() => {
+    try{
     addIntoDb(rssData);
+    } catch(err){
+      console.log("Duplicate")
+    }
   }, [rssData]);
 
   useEffect(() => {
