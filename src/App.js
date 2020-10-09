@@ -15,36 +15,39 @@ function App() {
   const { add } = useIndexedDB("rssDataStore");
   const [subscriptionUrls, setSubScriptionUrls] = useState([]);
 
-  const addIntoDb = (rssList) => {
-    rssList.map((rssItem) => {
 
-      try {
-        add({
-          feedTitle: rssItem.feedTitle,
-          entryTitle: rssItem.entryTitle,
-          content: rssItem.content,
-          pubDate: rssItem.pubDate,
-          link: rssItem.link,
-          contentSnippet: rssItem.contentSnippet,
-        });
-      } catch (e){
-        console.log("SAme objewct")
-      }
-
-    });
-  };
 
   useEffect(() => {
     readRSS(TEST_URL).then((rssData) => setRssData(rssData)).catch(err => console.log(err));
   }, []);
 
   useEffect(() => {
+    const addIntoDb = (rssList) => {
+      rssList.map((rssItem) => {
+  
+        try {
+          add({
+            feedTitle: rssItem.feedTitle,
+            entryTitle: rssItem.entryTitle,
+            content: rssItem.content,
+            pubDate: rssItem.pubDate,
+            link: rssItem.link,
+            contentSnippet: rssItem.contentSnippet,
+          });
+        } catch (e){
+          console.log("SAme objewct")
+        }
+  
+        return true
+  
+      });
+    };
     try{
     addIntoDb(rssData);
     } catch(err){
       console.log("Duplicate")
     }
-  }, [rssData]);
+  }, [rssData, add]);
 
   useEffect(() => {
     console.log(subscriptionUrls);
