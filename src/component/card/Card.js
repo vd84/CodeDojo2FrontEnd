@@ -38,7 +38,6 @@ const CardItem = ({rssItem}) => {
   return (
     <Card className={classes.root}>
       <CardHeader
-        
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
@@ -47,7 +46,6 @@ const CardItem = ({rssItem}) => {
         title= {rssItem.entryTitle}
         subheader={rssItem.pubDate}
       />
-     
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           {rssItem.contentSnippet}
