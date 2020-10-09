@@ -74,7 +74,7 @@ function DashboardNavBar(props) {
           <ListItemIcon className={classes.icon} >
           </ListItemIcon>
           <ListItemText primary="Home" />
-        </ListItem >
+        </ListItem>
         <ListItem
           
           button

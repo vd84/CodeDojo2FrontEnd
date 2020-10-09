@@ -5,9 +5,10 @@ import { useIndexedDB } from 'react-indexed-db';
 
 
 const HomePage = (props) => {
-
+    console.log(props.rssData)
    // const db = useIndexedDB('rssData');
   return (
+      
     <div className="homepage">
       <ul>
         {props.rssData.map((rssItem) => {
