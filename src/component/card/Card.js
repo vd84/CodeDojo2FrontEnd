@@ -47,7 +47,6 @@ const CardItem = ({rssItem}) => {
         title= {rssItem.entryTitle}
         subheader={rssItem.pubDate}
       />
-     
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           {rssItem.contentSnippet}
