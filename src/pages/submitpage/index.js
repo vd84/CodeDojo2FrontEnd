@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./submitpage.css";
-import { Button, Typography, FormControlLabel} from '@material-ui/core';
+import { Button, Typography} from '@material-ui/core';
 const SubmitPage = (props) => {
   const [currentUrl, setCurrentUrl] = useState("");
   useEffect(() => {
