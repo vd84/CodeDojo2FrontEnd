@@ -8,18 +8,26 @@ import { DBConfig } from "./DBConfig";
 import { initDB } from "react-indexed-db";
 import { useIndexedDB } from "react-indexed-db";
 initDB(DBConfig);
+const { getAll } = useIndexedDB('rssDataStore');
+
 
 function App() {
-  const TEST_URL = "http://www.nasa.gov/rss/dyn/breaking_news.rss";
+  //const TEST_URL = "http://www.nasa.gov/rss/dyn/breaking_news.rss";
+  //const TEST_URL2 = "https://feedforall.com/sample.xml"
+  //const TEST_URL3 = "http://rss.cnn.com/rss/edition.rss"
   const [rssData, setRssData] = useState([]);
+  const [loadDataFromDB, setLoadDataFromDB] = useState([]);
   const { add } = useIndexedDB("rssDataStore");
   const [subscriptionUrls, setSubScriptionUrls] = useState([]);
 
 
 
+
   useEffect(() => {
-    readRSS(TEST_URL).then((rssData) => setRssData(rssData)).catch(err => console.log(err));
-  }, []);
+    subscriptionUrls.map((item) => {
+      return readRSS(item).then((rssData) => setRssData([...rssData, ])).catch(err => console.log(err));
+    })
+  }, [subscriptionUrls]);
 
   useEffect(() => {
     const addIntoDb = (rssList) => {
@@ -53,6 +61,20 @@ function App() {
     console.log(subscriptionUrls);
   }, [subscriptionUrls]);
 
+  useEffect(() => {
+    console.log([...rssData])
+    console.log(rssData);
+  }, [rssData]);
+
+  useEffect(() => {
+    console.log("Loading db")
+    getAll().then(data => {
+      setLoadDataFromDB(data)
+      console.log(data)
+    })
+  }, [rssData])
+
+
   const handleSubmitClick = (url) => {
     console.log("submitting url " + url);
     setSubScriptionUrls([...subscriptionUrls, url]);
@@ -61,7 +83,7 @@ function App() {
   return (
     <Router>
       <Route component={DashboardNavBar} />
-      <Route exact path="/" component={() => <HomePage rssData={rssData} />} />
+      <Route exact path="/" component={() => <HomePage rssData={loadDataFromDB} />} />
       <Route
         exact
         path="/submitPage"
