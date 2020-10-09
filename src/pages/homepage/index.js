@@ -22,6 +22,15 @@ const HomePage = (props) => {
     },[selectedNames]);
 
     const filterRssData = (rssdata) =>{
+
+        if(selectedNames.length === 0){
+            return rssdata;
+        }
+
+        let filteredList = rssdata.filter((item) => {
+            return selectedNames.includes(item.feedTitle);
+        })
+        return filteredList;
     }
     
 
@@ -31,7 +40,7 @@ const HomePage = (props) => {
     <div className="homepage">
       <Select feedName ={FindFeednames() }  selectedNames = {handleFilterChanges}/>
       <div className="cardlist">
-        {props.rssData.map((rssItem) => {
+        {filterRssData(props.rssData).map((rssItem) => {
             return <Card key={rssItem.entryTitle}  rssItem={rssItem}/>;
           })}
       </div>

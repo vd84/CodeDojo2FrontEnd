@@ -8,8 +8,7 @@ import { DBConfig } from "./DBConfig";
 import { initDB } from "react-indexed-db";
 import { useIndexedDB } from "react-indexed-db";
 initDB(DBConfig);
-const { getAll } = useIndexedDB('rssDataStore');
-
+const { getAll } = useIndexedDB("rssDataStore");
 
 function App() {
   //const TEST_URL = "http://www.nasa.gov/rss/dyn/breaking_news.rss";
@@ -20,19 +19,29 @@ function App() {
   const { add } = useIndexedDB("rssDataStore");
   const [subscriptionUrls, setSubScriptionUrls] = useState([]);
 
-
-
-
   useEffect(() => {
     subscriptionUrls.map((item) => {
-      return readRSS(item).then((rssData) => setRssData([...rssData, ])).catch(err => console.log(err));
-    })
+      return readRSS(item)
+        .then((rssData) => setRssData([...rssData]))
+        .catch((err) => console.log(err));
+    });
+  }, [subscriptionUrls]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      subscriptionUrls.map((item) => {
+
+        return readRSS(item)
+          .then((rssData) => setRssData([...rssData]))
+          .catch((err) => console.log(err));
+      });
+    }, 10000);
+    return () => clearInterval(interval);
   }, [subscriptionUrls]);
 
   useEffect(() => {
     const addIntoDb = (rssList) => {
       rssList.map((rssItem) => {
-  
         try {
           add({
             feedTitle: rssItem.feedTitle,
@@ -42,18 +51,17 @@ function App() {
             link: rssItem.link,
             contentSnippet: rssItem.contentSnippet,
           });
-        } catch (e){
-          console.log("SAme objewct")
+        } catch (e) {
+          console.log("SAme objewct");
         }
-  
-        return true
-  
+
+        return true;
       });
     };
-    try{
-    addIntoDb(rssData);
-    } catch(err){
-      console.log("Duplicate")
+    try {
+      addIntoDb(rssData);
+    } catch (err) {
+      console.log("Duplicate");
     }
   }, [rssData, add]);
 
@@ -62,18 +70,17 @@ function App() {
   }, [subscriptionUrls]);
 
   useEffect(() => {
-    console.log([...rssData])
+    console.log([...rssData]);
     console.log(rssData);
   }, [rssData]);
 
   useEffect(() => {
-    console.log("Loading db")
-    getAll().then(data => {
-      setLoadDataFromDB(data)
-      console.log(data)
-    })
-  }, [rssData])
-
+    console.log("Loading db");
+    getAll().then((data) => {
+      setLoadDataFromDB(data);
+      console.log(data);
+    });
+  }, [rssData]);
 
   const handleSubmitClick = (url) => {
     console.log("submitting url " + url);
@@ -83,7 +90,11 @@ function App() {
   return (
     <Router>
       <Route component={DashboardNavBar} />
-      <Route exact path="/" component={() => <HomePage rssData={loadDataFromDB} />} />
+      <Route
+        exact
+        path="/"
+        component={() => <HomePage rssData={loadDataFromDB} />}
+      />
       <Route
         exact
         path="/submitPage"
