@@ -1,5 +1,6 @@
 import React from "react";
 import Card from '../../component/card/Card'
+import "./homepage.css";
 import { useIndexedDB } from 'react-indexed-db';
 
 

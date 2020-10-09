@@ -1,0 +1,10 @@
+.submitpage{
+    margin-left: 240px;
+    padding-top: 65px;
+    display: flex;
+}
+@media only screen and (max-width: 600px) {
+    .submitpage{
+        margin-left: 0px;
+    }
+}
