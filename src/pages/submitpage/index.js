@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./submitpage.css";
+import { Button, Typography, FormControlLabel} from '@material-ui/core';
 const SubmitPage = (props) => {
   const [currentUrl, setCurrentUrl] = useState("");
   useEffect(() => {
@@ -12,12 +13,12 @@ const SubmitPage = (props) => {
 
   return (
     <div className="submitpage">
-      <h1>Add Url to subscribe to</h1>
+      <Typography variant="h3" component="h3">Add URL To Subscribe To</Typography>
       <label>URL:</label>
       <input onChange={inputChangeHandler}></input>
-      <button onClick={() => props.cb(currentUrl)}>
+      <Button variant="outlined" color="primary" onClick={() => props.cb(currentUrl)}>
         Add Url To Subscription
-      </button>
+      </Button>
 
       <label></label>
     </div>
