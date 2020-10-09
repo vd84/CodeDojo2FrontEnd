@@ -1,0 +1,10 @@
+.homepage{
+    margin-left: 240px;
+    padding-top: 65px;
+    display: flex;
+}
+@media only screen and (max-width: 600px) {
+    .homepage{
+        margin-left: 0px;
+    }
+}

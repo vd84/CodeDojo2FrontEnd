@@ -13,12 +13,32 @@ function App() {
   const TEST_URLS = "http://www.nasa.gov/rss/dyn/breaking_news.rss";
   const [rssData, setRssData] = useState([]);
   const { add } = useIndexedDB("rssDataStore");
+<<<<<<< HEAD
   const [subscriptionUrls, setSubScriptionUrls] = useState([]);
 
   useEffect(() => {
     let listOfRssLists = readRSS(TEST_URLS);
     console.log(listOfRssLists)
     setRssData(readRSS(TEST_URLS));
+=======
+
+  const addIntoDb = (rssList) => {
+    rssList.map((rssItem) => {
+      add({
+        feedTitle: rssItem.feedTitle,
+        entryTitle: rssItem.entryTitle,
+        content: rssItem.content,
+        pubDate: rssItem.pubDate,
+        link: rssItem.link,
+        contentSnippet: rssItem.contentSnippet,
+      }
+      );
+    });
+  };
+
+  useEffect(() => {
+    readRSS(TEST_URL).then((rssData) => setRssData(rssData));
+>>>>>>> master
   }, []);
 
   useEffect(() => {
