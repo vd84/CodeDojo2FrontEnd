@@ -52,7 +52,6 @@ function App() {
             contentSnippet: rssItem.contentSnippet,
           });
         } catch (e) {
-          console.log("SAme objewct");
         }
 
         return true;
@@ -64,15 +63,6 @@ function App() {
       console.log("Duplicate");
     }
   }, [rssData, add]);
-
-  useEffect(() => {
-    console.log(subscriptionUrls);
-  }, [subscriptionUrls]);
-
-  useEffect(() => {
-    console.log([...rssData]);
-    console.log(rssData);
-  }, [rssData]);
 
   useEffect(() => {
     console.log("Loading db");

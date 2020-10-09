@@ -38,7 +38,8 @@ const HomePage = (props) => {
   return (
       
     <div className="homepage">
-      <Select feedName ={FindFeednames() }  selectedNames = {handleFilterChanges}/>
+
+      <Select className="selector" feedName ={FindFeednames() }  selectedNames = {handleFilterChanges}/>
       <div className="cardlist">
         {filterRssData(props.rssData).map((rssItem) => {
             return <Card key={rssItem.entryTitle}  rssItem={rssItem}/>;
