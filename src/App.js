@@ -52,7 +52,6 @@ function App() {
             contentSnippet: rssItem.contentSnippet,
           });
         } catch (e) {
-          console.log("SAme objewct");
         }
 
         return true;
@@ -61,21 +60,10 @@ function App() {
     try {
       addIntoDb(rssData);
     } catch (err) {
-      console.log("Duplicate");
     }
   }, [rssData, add]);
 
   useEffect(() => {
-    console.log(subscriptionUrls);
-  }, [subscriptionUrls]);
-
-  useEffect(() => {
-    console.log([...rssData]);
-    console.log(rssData);
-  }, [rssData]);
-
-  useEffect(() => {
-    console.log("Loading db");
     getAll().then((data) => {
       setLoadDataFromDB(data);
       console.log(data);
@@ -83,7 +71,6 @@ function App() {
   }, [rssData]);
 
   const handleSubmitClick = (url) => {
-    console.log("submitting url " + url);
     setSubScriptionUrls([...subscriptionUrls, url]);
   };
 
