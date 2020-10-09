@@ -5,29 +5,7 @@ import "./homepage.css";
 
 
 const HomePage = (props) => {
-<<<<<<< HEAD
-  const [selectedNames, setSelectedNames] = useState([]); 
-
-    const FindFeednames =()=>{
-      const unique = [...new Set(props.rssData.map(rssItem => rssItem.feedTitle))];
-      return unique;
-    }
-
-    const handleFilterChanges = (Title) =>{
-      setSelectedNames(Title);
-      console.log(Title);
-    }
-
-    useEffect(() =>{
-      console.log(selectedNames);
-    },[selectedNames]);
-
-    const filterRssData = (rssdata) =>{
-    }
-
-=======
     console.log(props.rssData)
->>>>>>> master
    // const db = useIndexedDB('rssData');
   return (
       

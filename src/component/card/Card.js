@@ -38,7 +38,6 @@ const CardItem = ({rssItem}) => {
   return (
     <Card className={classes.root}>
       <CardHeader
-        
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
