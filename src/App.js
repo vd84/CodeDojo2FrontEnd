@@ -60,10 +60,12 @@ function App() {
     try {
       addIntoDb(rssData);
     } catch (err) {
+      console.log("Duplicate");
     }
   }, [rssData, add]);
 
   useEffect(() => {
+    console.log("Loading db");
     getAll().then((data) => {
       setLoadDataFromDB(data);
       console.log(data);
@@ -71,6 +73,7 @@ function App() {
   }, [rssData]);
 
   const handleSubmitClick = (url) => {
+    console.log("submitting url " + url);
     setSubScriptionUrls([...subscriptionUrls, url]);
   };
 
