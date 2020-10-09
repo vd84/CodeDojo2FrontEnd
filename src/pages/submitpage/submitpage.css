@@ -1,0 +1,8 @@
+.submitpage {
+    padding-top: 40% ;
+    padding-left: 5%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
