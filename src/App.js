@@ -10,17 +10,9 @@ import { useIndexedDB } from "react-indexed-db";
 initDB(DBConfig);
 
 function App() {
-  const TEST_URLS = "http://www.nasa.gov/rss/dyn/breaking_news.rss";
+  const TEST_URL = "http://www.nasa.gov/rss/dyn/breaking_news.rss";
   const [rssData, setRssData] = useState([]);
   const { add } = useIndexedDB("rssDataStore");
-<<<<<<< HEAD
-  const [subscriptionUrls, setSubScriptionUrls] = useState([]);
-
-  useEffect(() => {
-    let listOfRssLists = readRSS(TEST_URLS);
-    console.log(listOfRssLists)
-    setRssData(readRSS(TEST_URLS));
-=======
 
   const addIntoDb = (rssList) => {
     rssList.map((rssItem) => {
@@ -31,41 +23,36 @@ function App() {
         pubDate: rssItem.pubDate,
         link: rssItem.link,
         contentSnippet: rssItem.contentSnippet,
-      }
-      );
+      });
     });
   };
 
   useEffect(() => {
     readRSS(TEST_URL).then((rssData) => setRssData(rssData));
->>>>>>> master
   }, []);
 
   useEffect(() => {
-    add({
-      feedTitle: 1,
-      entryTitle: 2,
-      content: 3,
-      pubDate: 4,
-      link: 5,
-      contentSnippet: 6,
-    });
+    addIntoDb(rssData);
   }, [rssData]);
 
   useEffect(() => {
-    console.log(subscriptionUrls)
-  }, [subscriptionUrls] )
+    console.log(subscriptionUrls);
+  }, [subscriptionUrls]);
 
   const handleSubmitClick = (url) => {
-    console.log("submitting url " + url)
-    setSubScriptionUrls([...subscriptionUrls, url])
-  }
+    console.log("submitting url " + url);
+    setSubScriptionUrls([...subscriptionUrls, url]);
+  };
 
   return (
     <Router>
       <Route component={DashboardNavBar} />
       <Route exact path="/" component={() => <HomePage rssData={rssData} />} />
-      <Route exact path="/submitPage" component={() => <SubmitPage cb={handleSubmitClick}/>} />
+      <Route
+        exact
+        path="/submitPage"
+        component={() => <SubmitPage cb={handleSubmitClick} />}
+      />
     </Router>
   );
 }
