@@ -27,7 +27,7 @@ function App() {
     });
   }, [subscriptionUrls]);
 
-  useEffect(() => {
+/*   useEffect(() => {
     const interval = setInterval(() => {
       subscriptionUrls.map((item) => {
 
@@ -37,7 +37,7 @@ function App() {
       });
     }, 10000);
     return () => clearInterval(interval);
-  }, [subscriptionUrls]);
+  }, [subscriptionUrls]); */
 
   useEffect(() => {
     const addIntoDb = (rssList) => {
