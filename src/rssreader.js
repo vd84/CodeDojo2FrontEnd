@@ -13,8 +13,9 @@ export const readRSS = (url) => {
         link: entry.link,
         contentSnippet: entry.contentSnippet,
       });
+      return true
     });
     return data;
-  });
+  }).catch(err => console.log(err));
 };
 export default readRSS;

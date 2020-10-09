@@ -2,10 +2,10 @@ import React, {useEffect, useState }from "react";
 import Card from '../../component/card/Card'
 import Select from '../../component/select/Select'
 import "./homepage.css";
-import { useIndexedDB } from 'react-indexed-db';
 
 
 const HomePage = (props) => {
+<<<<<<< HEAD
   const [selectedNames, setSelectedNames] = useState([]); 
 
     const FindFeednames =()=>{
@@ -25,8 +25,12 @@ const HomePage = (props) => {
     const filterRssData = (rssdata) =>{
     }
 
+=======
+    console.log(props.rssData)
+>>>>>>> master
    // const db = useIndexedDB('rssData');
   return (
+      
     <div className="homepage">
       <Select feedName ={FindFeednames() }  selectedNames = {handleFilterChanges}/>
       <div className="cardlist">
